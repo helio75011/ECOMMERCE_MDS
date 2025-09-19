@@ -3,12 +3,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+const userRoutes = require('./routes/userRoutes');
+
 const app = express();
 const port = 3000;
 
 //Middlewares
 app.use(cors());
 app.use(express.json());
+
+app.use('/api/users', userRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');

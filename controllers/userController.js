@@ -35,6 +35,14 @@ exports.createUser = async (req, res) => {
     }
 };
 
+exports.logout= async (req, res) => {
+    try {
+        res.status(200).json({ message: 'User logged out successfully' });
+    } catch (err) {
+        res.status(500).json({ error: err.message })
+    }
+}
+
 exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;

@@ -4,10 +4,16 @@ const jwt = require('jsonwebtoken');
 
 exports.getAllUsers = async (req, res) => {
     try {
-        const users = await User.find().select('-password');
+        let filter = {};
+
+        if (req.user.role !== 'admin') {
+            filter = { role: 'user' };
+        }
+
+        const users = await User.find(filter).select('-password');
         res.status(200).json(users);
     } catch (error) {
-        res.status(500).json({ error: err.message })
+        res.status(500).json({ error: error.message })
     }
 };
 
@@ -19,7 +25,7 @@ exports.getUserById = async (req, res) => {
         }
         res.status(200).json(user);
     } catch (error) {
-        res.status(500).json({ error: err.message })
+        res.status(500).json({ error: error.message })
     }
 };
 
@@ -30,16 +36,16 @@ exports.createUser = async (req, res) => {
         const newUser = new User({ name, nickname, email, password: hashedPassword });
         await newUser.save();
         res.status(201).json(newUser);
-    } catch (err) {
-        res.status(400).json({ error: err.message })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
     }
 };
 
 exports.logout= async (req, res) => {
     try {
         res.status(200).json({ message: 'User logged out successfully' });
-    } catch (err) {
-        res.status(500).json({ error: err.message })
+    } catch (error) {
+        res.status(500).json({ error: error.message })
     }
 }
 
@@ -58,8 +64,8 @@ exports.login = async (req, res) => {
             { expiresIn: process.env.JWT_EXPIRES_IN || '1h' }
         );
         res.status(200).json({ token });
-    } catch (err) {
-        res.status(500).json({ error: err.message })
+    } catch (error) {
+        res.status(500).json({ error: error.message })
     }
 };
 
@@ -78,7 +84,7 @@ exports.updateUser = async (req, res) => {
             return res.status(404).json({ error: 'User not found' });
         }
         res.status(200).json(updatedUser);
-    } catch (err) {
+    } catch (error) {
         res.status(500).json({ error: err.message })
     }
 };
@@ -90,7 +96,25 @@ exports.deleteUser = async (req, res) => {
             return res.status(404).json({ error: 'User not found' });
         }
         res.status(200).json({ message: 'User deleted successfully' });
-    } catch (err) {
-        res.status(500).json({ error: err.message })
+    } catch (error) {
+        res.status(500).json({ error: error.message })
     }
+};
+
+// Admin
+exports.getAdmin = async (req, res) => {
+  try {
+    console.log("→ req.user =", req.user);
+
+    // on récupère l'utilisateur connecté via l'id du token
+    const user = await User.findById(req.user.userId).select('-password');
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error("❌ Erreur getCurrentUser:", error);
+    res.status(500).json({ error: error.message });
+  }
 };

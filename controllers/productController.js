@@ -1,7 +1,6 @@
 const Product = require('../models/Product');
 
 
-// POST /api/products
 exports.createProduct = async (req, res) => {
     try {
         if (req.user.role !== 'admin') {
@@ -21,5 +20,15 @@ exports.createProduct = async (req, res) => {
     } catch (error) {
         console.error("❌ Erreur createProduct:", error);
         res.status(400).json({ error: error.message })
+    }
+};
+
+exports.getAllProduct = async (req, res) => {
+    try {
+        const products = await Product.find({ isActive: true })
+        // const product = await Product.findById(req.params.id);
+        res.status(200).json(products);
+    } catch (error) {
+        res.status(500).json({ error: error.message })
     }
 };

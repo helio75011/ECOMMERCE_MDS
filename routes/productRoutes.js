@@ -8,7 +8,7 @@ const productController = require('../controllers/productController');
 
 router.post('/create', verifyToken, productController.createProduct);
 router.get('/', productController.getAllProduct);
-// router.get('/:id', productController.getMyProductById);
+router.get('/:id', productController.getProductById);
 // router.patch('/:id', productController.updateMyProduct);
 // router.delete('/:id', productController.deleteMyProduct);
 

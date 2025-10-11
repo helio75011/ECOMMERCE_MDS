@@ -7,9 +7,9 @@ const productController = require('../controllers/productController');
 // router.use(verifyToken);
 
 router.post('/create', verifyToken, productController.createProduct);
-// router.get('/', productController.getMyProducts);
-// router.get('/:id', productController.getMyProductById);
-// router.patch('/:id', productController.updateMyProduct);
-// router.delete('/:id', productController.deleteMyProduct);
+router.get('/', productController.getAllProduct);
+router.get('/:id', productController.getProductById);
+router.patch('/:id', verifyToken, productController.updateProduct);
+router.delete('/:id', verifyToken, productController.deleteProduct);
 
 module.exports = router;

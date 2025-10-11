@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
+const adminController = require('../controllers/adminController')
 const verifyToken = require('../middlewares/verifyToken');
 
 // Admin
@@ -11,7 +12,7 @@ router.post('/', userController.createUser);
 router.post('/login', userController.login);
 
 // Admin
-router.get('/admin', verifyToken, userController.getAdmin);
+router.get('/admin', verifyToken, adminController.getAdmin);
 // Routes avec Authentification
 router.get('/', verifyToken, userController.getAllUsers);
 router.get('/:id', verifyToken, userController.getUserById);

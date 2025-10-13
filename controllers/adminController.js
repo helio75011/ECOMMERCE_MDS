@@ -3,6 +3,9 @@ const User = require("../models/User")
 exports.getAdmin = async (req, res) => {
   try {
     console.log("→ req.user =", req.user);
+    if (req.user.role !== 'admin') {
+        return res.status(403).json({ error: "Seul un admin peut voir ses informations" })
+    }
 
     // on récupère l'utilisateur connecté via l'id du token
     const user = await User.findById(req.user.userId).select('-password');

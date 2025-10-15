@@ -100,3 +100,28 @@ exports.deleteUser = async (req, res) => {
         res.status(500).json({ error: error.message })
     }
 };
+
+exports.uploadProfilePic = async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: 'Aucune image envoyée' });
+        }
+
+        const imagePath = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+
+        const updatedUser = await User.findByIdAndUpdate(
+            req.user.userId,
+            { profilePic: imagePath },
+            { new: true }
+        ).select('-password');
+
+        res.status(200).json({
+            message: 'Image de profil mise à jour avec succès',
+            user: updatedUser
+        });
+
+    } catch (error) {
+        console.error('Erreur uploadProfilePic :', error);
+        res.status(500).json({ error: error.message });
+    }
+};

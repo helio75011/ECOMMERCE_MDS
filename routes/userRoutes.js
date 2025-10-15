@@ -3,9 +3,10 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const adminController = require('../controllers/adminController')
 const verifyToken = require('../middlewares/verifyToken');
+const upload = require('../middlewares/upload');
 
-// Admin
-const requireRole = require('../middlewares/requireRole');
+// // Admin
+// const requireRole = require('../middlewares/requireRole');
 
 // Routes Publiques
 router.post('/', userController.createUser);
@@ -18,6 +19,9 @@ router.get('/', verifyToken, userController.getAllUsers);
 router.get('/:id', verifyToken, userController.getUserById);
 router.patch('/:id', verifyToken, userController.updateUser);
 router.delete('/:id', verifyToken, userController.deleteUser);
+
+// upload
+router.patch('/profile-pic', verifyToken, upload.single('profilePic'), userController.uploadProfilePic);
 
 
 module.exports = router;

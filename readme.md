@@ -35,3 +35,39 @@ npm install
 
 # 3. Configurer les variables d’environnement
 touch .env
+```
+
+---
+
+## 🧱 Structure du projet
+
+```
+📦 ecommerce/
+├── controllers/
+│   ├── userController.js
+│   ├── productController.js
+│   ├── orderController.js
+│   └── wishlistController.js
+│
+├── models/
+│   ├── User.js
+│   ├── Product.js
+│   ├── Order.js
+│   └── Wishlist.js
+│
+├── middlewares/
+│   ├── verifyToken.js
+│   ├── requireRole.js
+│   └── upload.js
+│
+├── routes/
+│   ├── userRoutes.js
+│   ├── productRoutes.js
+│   ├── orderRoutes.js
+│   └── wishlistRoutes.js
+│
+├── uploads/ ← images de profil stockées ici
+├── .env
+├── index.js
+└── package.json
+```

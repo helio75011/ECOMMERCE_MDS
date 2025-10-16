@@ -6,6 +6,7 @@ Cette API e-commerce permet de gérer :
 - des **produits**
 - des **commandes (orders)**
 - des **wishlists (favoris)**
+- et l’**upload d’images de profil utilisateur**
 
 Le backend est construit avec **Express** et **MongoDB (Mongoose)**.
 
@@ -17,6 +18,7 @@ Le backend est construit avec **Express** et **MongoDB (Mongoose)**.
 - **bcrypt** → hashage des mots de passe
 - **jsonwebtoken** → authentification par token
 - **dotenv** → variables d'environnement
+- **multer** → upload de fichiers (images)
 - **cors**, **nodemon** → confort dev
 
 ---

@@ -17,11 +17,10 @@ router.get('/admin', verifyToken, adminController.getAdmin);
 // Routes avec Authentification
 router.get('/', verifyToken, userController.getAllUsers);
 router.get('/:id', verifyToken, userController.getUserById);
-router.patch('/:id', verifyToken, userController.updateUser);
-router.delete('/:id', verifyToken, userController.deleteUser);
-
 // upload
 router.patch('/profile-pic', verifyToken, upload.single('profilePic'), userController.uploadProfilePic);
+router.patch('/:id', verifyToken, userController.updateUser);
+router.delete('/:id', verifyToken, userController.deleteUser);
 
 
 module.exports = router;

@@ -70,23 +70,28 @@ exports.login = async (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
-    try {
-        const updates = { ...req.body };
-        if (updates.password) {
-            updates.password = await bcrypt.hash(updates.password, 10);
-        }
-        const updatedUser = await User.findByIdAndUpdate(
-            req.params.id,
-            updates,
-            { new: true, runValidators: true }
-        ).select('-password');
-        if (!updatedUser) {
-            return res.status(404).json({ error: 'User not found' });
-        }
-        res.status(200).json(updatedUser);
-    } catch (error) {
-        res.status(500).json({ error: err.message })
+  try {
+    const updates = { ...req.body };
+
+    if (updates.password) {
+      updates.password = await bcrypt.hash(updates.password, 10);
     }
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      updates,
+      { new: true, runValidators: true }
+    ).select('-password');
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error('❌ Erreur updateUser:', error);
+    res.status(500).json({ error: error.message });
+  }
 };
 
 exports.deleteUser = async (req, res) => {

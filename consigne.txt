@@ -16,5 +16,7 @@ LES OBJECTIFS EN COMMUN :
 
     3. Modifier la table "users" pour rajouter un champ "profilePic" et gérer l'upload d'image.
 
+    image produit
+
 OBJECTIF DE LA JOURNEE (vendredi) :
 1. résumé markdown

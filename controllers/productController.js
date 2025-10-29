@@ -82,3 +82,33 @@ exports.deleteProduct = async (req, res) => {
         res.status(500).json({ error: error.message })
     }
 }
+
+exports.uploadProductImage = async (req, res) => {
+    try {
+        if (req.user.role !== 'admin') {
+            return res.status(403).json({ error: "Accès interdit. Réservé à l'admin" });
+        }
+
+        if (!req.file) {
+            return res.status(400).json({ error: 'Aucune image envoyée' });
+        }
+
+        const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+
+        const product = await Product.findById(req.params.id);
+        if (!product) {
+            return res.status(404).json({ error: 'Produit introuvable' });
+        }
+
+        product.images.push(imageUrl);
+        await product.save();
+
+        res.status(200).json({
+            message: 'Image ajoutée avec succès',
+            product
+        });
+    } catch (error) {
+        console.error('Erreur uploadProductImage:', error);
+        res.status(500).json({ error: error.message });
+    }
+};

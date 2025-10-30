@@ -20,3 +20,18 @@ LES OBJECTIFS EN COMMUN :
 
 OBJECTIF DE LA JOURNEE (vendredi) :
 1. résumé markdown
+
+LE BUT AUJOURD'HUI EST LE SUIVANT :
+
+** Finaliser l'API **
+Pour cette étape, nous aimerions vérifier et tester que toutes les routes/endpoints crées fonctionnent
+parfaitement. Il vaut mieux avoir moins de fonctionnalités, mais qu'elles soient toutes fonctionnelles, plutôt
+que d'avoir plein de fonctionnalités pas fonctionneles.
+Vérifier d'avoir au moins un CRUD sur plusieurs tables, exemple : users, orders, products
+
+** Testez chaque endpoint **
+Il est important que chaque type de requête que vous ayez mis en place soit testée de bout a bout.
+
+** Versionner votre code **
+Il est important aussi que vous ayez versionné votre code à l'aide de Git. Si cela n'est pas fait, il faut push
+votre code sur un dépot Github pour le rendu.

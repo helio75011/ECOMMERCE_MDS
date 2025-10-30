@@ -1,0 +1,209 @@
+openapi: 3.0.0
+info:
+  title: API E-Commerce — Lou Pankion
+  version: 1.0.0
+  description: |
+    API e-commerce réalisée avec Node.js, Express et MongoDB.  
+    Elle gère les utilisateurs, produits, commandes, wishlists et upload d'images.
+
+servers:
+  - url: http://localhost:4612
+    description: Serveur local
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        nickname:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+          enum: [user, admin]
+        profilePic:
+          type: string
+          description: URL de l'image de profil
+    Product:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        category:
+          type: string
+        stock:
+          type: number
+        images:
+          type: array
+          items:
+            type: string
+    Order:
+      type: object
+      properties:
+        user:
+          type: string
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              product:
+                type: string
+              quantity:
+                type: integer
+              price:
+                type: number
+        totalAmount:
+          type: number
+        status:
+          type: string
+    Wishlist:
+      type: object
+      properties:
+        user:
+          type: string
+        products:
+          type: array
+          items:
+            type: string
+
+security:
+  - bearerAuth: []
+
+paths:
+  /api/users/login:
+    post:
+      summary: Connexion utilisateur
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Connexion réussie
+        "400":
+          description: Identifiants invalides
+
+  /api/users/profile-pic:
+    patch:
+      summary: Upload image de profil
+      tags: [Users]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                profilePic:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Image de profil mise à jour
+        "401":
+          description: Token invalide
+
+  /api/products:
+    get:
+      summary: Récupérer tous les produits
+      tags: [Products]
+      responses:
+        "200":
+          description: Liste des produits récupérée
+    post:
+      summary: Créer un produit
+      tags: [Products]
+      security:
+        - bearerAuth: []
+      responses:
+        "201":
+          description: Produit créé
+
+  /api/products/{id}/image:
+    post:
+      summary: Upload d’une image produit (admin uniquement)
+      tags: [Products]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID du produit
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Image ajoutée avec succès
+        "403":
+          description: Accès interdit (non-admin)
+
+  /api/orders:
+    get:
+      summary: Récupérer toutes les commandes de l’utilisateur
+      tags: [Orders]
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Liste des commandes
+    post:
+      summary: Créer une commande
+      tags: [Orders]
+      security:
+        - bearerAuth: []
+      responses:
+        "201":
+          description: Commande créée
+
+  /api/wishlist:
+    get:
+      summary: Voir la wishlist
+      tags: [Wishlist]
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Wishlist récupérée
+    post:
+      summary: Ajouter un produit à la wishlist
+      tags: [Wishlist]
+      security:
+        - bearerAuth: []
+      responses:
+        "201":
+          description: Produit ajouté

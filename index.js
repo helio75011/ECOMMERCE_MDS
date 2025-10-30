@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const setupSwagger = require("./swagger")
 
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/productRoutes');
@@ -21,9 +22,7 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/wishlists', wishlistRoutes);
 app.use('/uploads', express.static('uploads'));
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+setupSwagger(app);
 
 // Connect to MongoDB
 // Si vous n'avez pas le console.log, vérifiez d'installer MondoDB Community Server et de le lancer en local !

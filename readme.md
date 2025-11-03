@@ -20,6 +20,7 @@ Le backend est construit avec **Express** et **MongoDB (Mongoose)**.
 - **jsonwebtoken** → authentification par token
 - **dotenv** → variables d'environnement
 - **multer** → upload de fichiers (images)
+- **swagger-ui-express** + **yaml** → documentation API interactive (Swagger)
 - **cors**, **nodemon** → confort dev
 
 ---
@@ -98,3 +99,34 @@ JWT_EXPIRES_IN=1h
 | `PATCH`  | `/api/users/:id`         | Modifier un utilisateur             | ✅       |
 | `PATCH`  | `/api/users/profile-pic` | Upload / modifier l’image de profil | ✅       |
 | `DELETE` | `/api/users/:id`         | Supprimer un utilisateur            | ✅       |
+
+---
+
+## 📦 Produits (Products)
+
+| Méthode  | Route                     | Description                         | Auth    |
+| -------- | ------------------------- | ----------------------------------- | ------- |
+| `GET`    | `/api/products/`          | Voir tous les produits              | ❌       |
+| `POST`   | `/api/products/`          | Créer un produit                    | ✅ admin |
+| `PATCH`  | `/api/products/:id`       | Modifier un produit                 | ✅ admin |
+| `DELETE` | `/api/products/:id`       | Supprimer un produit                | ✅ admin |
+| `POST`   | `/api/products/:id/image` | Upload d’image produit (via Multer) | ✅ admin |
+
+---
+
+## 🛒 Commandes (Orders)
+
+| Méthode | Route         | Description                                  | Auth |
+| ------- | ------------- | -------------------------------------------- | ---- |
+| `GET`   | `/api/orders` | Voir les commandes de l’utilisateur connecté | ✅    |
+| `POST`  | `/api/orders` | Créer une nouvelle commande                  | ✅    |
+
+---
+
+## 💖 Wishlist (Favoris)
+
+| Méthode  | Route            | Description                   | Auth |
+| -------- | ---------------- | ----------------------------- | ---- |
+| `GET`    | `/api/wishlists` | Voir la wishlist              | ✅    |
+| `POST`   | `/api/wishlists` | Ajouter un produit à la liste | ✅    |
+| `DELETE` | `/api/wishlists` | Supprimer la wishlist         | ✅    |

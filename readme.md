@@ -129,4 +129,4 @@ JWT_EXPIRES_IN=1h
 | -------- | ---------------- | ----------------------------- | ---- |
 | `GET`    | `/api/wishlists` | Voir la wishlist              | ✅    |
 | `POST`   | `/api/wishlists` | Ajouter un produit à la liste | ✅    |
-| `DELETE` | `/api/wishlists` | Supprimer la wishlist         | ✅    |
+| `DELETE` | `/api/wishlists` | Supprimer la wishlist         | ✅    

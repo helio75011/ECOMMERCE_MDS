@@ -13,10 +13,8 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: api
-    environment:
-      - NODE_ENV=development
-      - JWT_SECRET=super-secret-password-for-jwt-auth-yeaaah
-      - MONGO_URI=mongodb://mongo:27017/nodejs-api-b3
+    env_file:
+      - .env.docker
     depends_on:
       - mongodb
     ports:

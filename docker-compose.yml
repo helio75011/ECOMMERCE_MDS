@@ -21,5 +21,24 @@ services:
       - "4612:4612"
     restart: unless-stopped
 
+  front:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: front
+    environment:
+      - NODE_ENV=development
+      - VITE_API_URI=https://localhost:4612/api/
+      - CHOKIDAR_USEPOLLING:true
+      - HOST=0.0.0.0
+    depends_on:
+      - api
+    ports: 
+      - "5173:5173"
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+
 volumes:
   mongo-data:

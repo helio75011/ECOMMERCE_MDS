@@ -16,7 +16,7 @@ function setupSwagger(app) {
       '/api-docs',
       swaggerUi.serve,
       swaggerUi.setup(swaggerDocument, {
-        customSiteTitle: 'Lou Pankion - API E-Commerce',
+        customSiteTitle: 'Hélio de Breyne - API E-Commerce',
       })
     );
 

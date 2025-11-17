@@ -1,14 +1,16 @@
+import Accueil from './assets/page/Accueil.jsx'
+
 function App() {
 
   return (
     <>
-      <div className="">
-        <header className="">
-          <h1 class="text-3xl font-bold">Welcome to My React App</h1>
-          <p>This is a simple React application.</p>
-          <p>coucou</p>
-        </header>
-      </div>
+      <header className="w-full bg-white/80 backdrop-blur border-b border-neutral-200">
+        <div className="mx-auto max-w-7xl px-4 py-6">
+          <h1 className="text-3xl font-bold tracking-tight">Ecommerce</h1>
+          <p className="text-neutral-600">Bienvenue sur notre boutique</p>
+        </div>
+      </header>
+      <Accueil />
     </>
   )
 }

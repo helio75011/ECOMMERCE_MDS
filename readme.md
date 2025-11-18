@@ -61,10 +61,64 @@ JWT_EXPIRES_IN=1h
 │   ├── productController.js
 │   ├── orderController.js
 │   └── wishlistController.js
-│
-├── models/
+
+```
+
+## 🐳 Démarrer avec Docker
+
+### Prérequis
+- Docker Desktop installé et démarré
+- Fichier `/.env.docker` présent à la racine (fourni)
+
+### Lancer les services
+```powershell
+# À la racine du projet
+docker compose up -d --build
+
+# Vérifier l'état des conteneurs
+docker compose ps
+
+```
+
+### URLs utiles
+- Frontend: `http://localhost:5173`
+- API: `http://localhost:4612`
+- Swagger: `http://localhost:4612/api-docs`
+- MongoDB: `localhost:27017` (conteneur `mongo`)
+
+### Logs
+```powershell
 │   ├── User.js
+docker compose logs -f api
+# Frontend
+docker compose logs -f front
+# MongoDB
+docker compose logs -f mongodb
+```
+
+### Arrêt et nettoyage
+```powershell
 │   ├── Product.js
+docker compose down
+# Arrêter et supprimer les volumes (données Mongo)
+docker compose down -v
+```
+
+### Variables d'environnement
+- L'API charge `/.env.docker`. Par défaut `MONGO_URI` pointe vers MongoDB Atlas.
+- Pour utiliser le MongoDB du compose, remplacez dans `/.env.docker`:
+	- `MONGO_URI=mongodb://mongo:27017/ecommerce`
+	- puis relancez: `docker compose up -d --build`
+- Frontend: la variable `VITE_API_URI` est définie dans `docker-compose.yml`.
+	- Si l'API n'est pas en HTTPS, utilisez `http://localhost:4612/api/`.
+
+### Développement
+- Front: hot reload actif via le volume `./frontend:/usr/src/app`.
+- API: le conteneur tourne avec `nodemon`, mais sans volume hôte → pour refléter vos changements, reconstruisez l'image ou ajoutez un volume de dev si nécessaire.
+
+---
+
+## 🧩 Stack technique
 │   ├── Order.js
 │   └── Wishlist.js
 │

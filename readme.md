@@ -183,4 +183,4 @@ docker compose down -v
 | -------- | ---------------- | ----------------------------- | ---- |
 | `GET`    | `/api/wishlists` | Voir la wishlist              | ✅    |
 | `POST`   | `/api/wishlists` | Ajouter un produit à la liste | ✅    |
-| `DELETE` | `/api/wishlists` | Supprimer la wishlist         | ✅    |..
+| `DELETE` | `/api/wishlists` | Supprimer la wishlist         | ✅    |

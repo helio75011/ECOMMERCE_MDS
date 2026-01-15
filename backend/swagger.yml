@@ -80,14 +80,12 @@ components:
           items:
             type: string
 
-security:
-  - bearerAuth: []
-
 paths:
   /api/users/login:
     post:
       summary: Connexion utilisateur
       tags: [Users]
+      security: []
       requestBody:
         required: true
         content:
@@ -99,6 +97,9 @@ paths:
                   type: string
                 password:
                   type: string
+            example:
+              email: "user@example.com"
+              password: "motdepasse123"
       responses:
         "200":
           description: Connexion réussie
@@ -131,6 +132,7 @@ paths:
     get:
       summary: Récupérer tous les produits
       tags: [Products]
+      security: []
       responses:
         "200":
           description: Liste des produits récupérée
@@ -139,6 +141,19 @@ paths:
       tags: [Products]
       security:
         - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+            example:
+              title: "MacBook Pro 16"
+              description: "Ordinateur portable haute performance avec puce M3"
+              price: 2499.99
+              category: "Informatique"
+              stock: 15
+              images: []
       responses:
         "201":
           description: Produit créé
@@ -186,6 +201,32 @@ paths:
       tags: [Orders]
       security:
         - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                products:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      product:
+                        type: string
+                      quantity:
+                        type: integer
+                      price:
+                        type: number
+            example:
+              products:
+                - product: "507f1f77bcf86cd799439011"
+                  quantity: 2
+                  price: 2499.99
+                - product: "507f1f77bcf86cd799439012"
+                  quantity: 1
+                  price: 49.99
       responses:
         "201":
           description: Commande créée
@@ -204,6 +245,17 @@ paths:
       tags: [Wishlist]
       security:
         - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productId:
+                  type: string
+            example:
+              productId: "507f1f77bcf86cd799439011"
       responses:
         "201":
           description: Produit ajouté

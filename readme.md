@@ -173,7 +173,7 @@ docker compose down -v
 | Méthode | Route         | Description                                  | Auth |
 | ------- | ------------- | -------------------------------------------- | ---- |
 | `GET`   | `/api/orders` | Voir les commandes de l’utilisateur connecté | ✅    |
-| `POST`  | `/api/orders` | Créer une nouvelle commande                  | ✅    |
+| `POST`  | `/api/orders` | Créer une nouvelle commande                  | ✅    
 
 ---
 

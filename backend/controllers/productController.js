@@ -7,12 +7,12 @@ exports.createProduct = async (req, res) => {
             return res.status(403).json({ error: "Seul un admin peut créer un produit" })
         }
 
-        const { title, descritption, price, images, category, stock, isActive } = req.body;
+        const { title, description, price, images, category, stock, isActive } = req.body;
 
         if (!title || !price) {
             return res.status(400).json({ error: "le titre et le prix sont obligatoire" })
         }
-        const newProduct = new Product({ title, descritption, price, images, category, stock, isActive, owner: req.user.userId })
+        const newProduct = new Product({ title, description, price, images, category, stock, isActive, owner: req.user.userId })
 
         await newProduct.save();
         res.status(201).json(newProduct);

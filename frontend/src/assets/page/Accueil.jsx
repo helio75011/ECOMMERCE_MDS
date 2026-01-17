@@ -34,7 +34,10 @@ const Accueil = () => {
             {product.map((x) => {
               return (
                 <div>
-                  <h2>{x.title}</h2>
+                   <img src={x.image} />
+                  <h3>{x.title}</h3>
+                   <h4>{x.price}</h4>
+                   <p>{x.description}</p>
                 </div>
               )
             })

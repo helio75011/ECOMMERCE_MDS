@@ -3,7 +3,7 @@ import './Accueil.css';
 import { useState, useEffect } from 'react';
 
 const Accueil = () => {
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null);
   
@@ -30,11 +30,13 @@ const Accueil = () => {
   return (
     <div>
       {isLoading ? <h1>loading...</h1> : 
-        <div>
+        <div className='cathalog'>
             {product.map((x) => {
               return (
-                <div>
-                  <h2>{x.title}</h2>
+                <div className='product' key={x._id || x.id}>
+                  <img src={x.images} alt="" />
+                  <h3>{x.title}</h3>
+                  <p>{x.price}</p>
                 </div>
               )
             })

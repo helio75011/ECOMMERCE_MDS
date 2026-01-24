@@ -1,0 +1,7 @@
+.cathalog {
+    display: flex;
+}
+
+.product {
+    border: 1px solid black;
+}

@@ -35,8 +35,14 @@ const Accueil = () => {
               return (
                 <div className='product' key={x._id || x.id}>
                   <img src={x.images} alt="" />
-                  <h3>{x.title}</h3>
-                  <p>{x.price}</p>
+                  <div className='titlePrice'>
+                    <h3>{x.title}</h3>
+                    <p>{x.price} €</p>
+                  </div>
+                  <div className='titlePrice'>
+                    <h3>{x.category}</h3>
+                    <p>{x.isActive ? "En stock" : "Épuisé"}</p>
+                  </div>
                 </div>
               )
             })

@@ -1,7 +1,22 @@
 .cathalog {
     display: flex;
+    padding: 15px;
 }
 
 .product {
     border: 1px solid black;
+    padding: 15px;
+    margin: 10px;
+}
+
+.titlePrice {
+    display: flex;
+}
+
+.titlePrice h3 {
+    padding-right: 10px;
+}
+
+.titlePrice p {
+    padding-left: 10px;
 }

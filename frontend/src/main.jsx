@@ -4,6 +4,11 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import './index.css';
 import App from './App.jsx';
 
+// PrimeReact
+import 'primereact/resources/themes/lara-light-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+
 const root = document.getElementById("root");
 
 ReactDOM.createRoot(root).render(

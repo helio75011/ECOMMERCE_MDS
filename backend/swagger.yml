@@ -158,6 +158,72 @@ paths:
         "201":
           description: Produit créé
 
+  /api/products/{id}:
+    get:
+      summary: Récupérer un produit par ID
+      tags: [Products]
+      security: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID du produit
+      responses:
+        "200":
+          description: Produit récupéré
+        "404":
+          description: Produit introuvable
+    patch:
+      summary: Modifier un produit (admin uniquement)
+      tags: [Products]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID du produit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+            example:
+              title: "MacBook Pro 16 - Édition 2026"
+              price: 2599.99
+              stock: 10
+      responses:
+        "200":
+          description: Produit modifié avec succès
+        "403":
+          description: Accès interdit (non-admin)
+        "404":
+          description: Produit introuvable
+    delete:
+      summary: Supprimer un produit (admin uniquement)
+      tags: [Products]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID du produit
+      responses:
+        "200":
+          description: Produit supprimé avec succès
+        "403":
+          description: Accès interdit (non-admin)
+        "404":
+          description: Produit introuvable
+
   /api/products/{id}/image:
     post:
       summary: Upload d’une image produit (admin uniquement)

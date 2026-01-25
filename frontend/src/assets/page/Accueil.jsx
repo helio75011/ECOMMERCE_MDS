@@ -39,9 +39,9 @@ const Accueil = () => {
                     <h3>{x.title}</h3>
                     <p>{x.price} €</p>
                   </div>
-                  <div className='titlePrice'>
+                  <div className='titleStock'>
                     <h3>{x.category}</h3>
-                    <p>{x.isActive ? "En stock" : "Épuisé"}</p>
+                    <p>{x.stock ? "en stock" : "Épuisé"}</p>
                   </div>
                 </div>
               )

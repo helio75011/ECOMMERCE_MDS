@@ -11,6 +11,7 @@
 
 .titlePrice {
     display: flex;
+    justify-content: space-between;
 }
 
 .titlePrice h3 {
@@ -19,4 +20,9 @@
 
 .titlePrice p {
     padding-left: 10px;
+}
+
+.titleStock {
+    display: flex;
+    justify-content: space-between;
 }

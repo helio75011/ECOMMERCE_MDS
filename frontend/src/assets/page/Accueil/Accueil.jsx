@@ -1,6 +1,6 @@
 import React from 'react';
 import './Accueil.css';  
-import Product from '../components/Product/Product';   
+import Product from '../../components/Product/Product';   
 
 const Accueil = () => {
   return (

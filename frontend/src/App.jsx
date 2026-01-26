@@ -1,12 +1,10 @@
-import Accueil from './assets/page/Accueil.jsx'
-import Test from './assets/page/Test.jsx'
+import Accueil from './assets/page/Accueil/Accueil.jsx'
 
 function App() {
 
   return (
     <>
       <Accueil />
-      <Test />
     </>
   )
 }

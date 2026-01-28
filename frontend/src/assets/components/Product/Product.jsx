@@ -11,7 +11,7 @@ const Product = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch('http://localhost:4612/api/products');
+        const response = await fetch('http://vps115594.serveur-vps.net/api/products');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

@@ -1,4 +1,4 @@
-# 🛍️ API E-Commerce — Node.js / Express / MongoDB
+## 🛍️ API E-Commerce — Node.js / Express / MongoDB
 
 ## 🚀 Description
 Cette API e-commerce permet de gérer :
@@ -184,3 +184,4 @@ docker compose down -v
 | `GET`    | `/api/wishlists` | Voir la wishlist              | ✅    |
 | `POST`   | `/api/wishlists` | Ajouter un produit à la liste | ✅    |
 | `DELETE` | `/api/wishlists` | Supprimer la wishlist         | ✅    
+.

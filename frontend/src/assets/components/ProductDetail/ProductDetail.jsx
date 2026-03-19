@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { Button } from 'primereact/button';  
+import { useParams, Link } from "react-router";
 import "./ProductDetail.css";
 
 const ProductDetail = () => {
@@ -37,6 +38,7 @@ const ProductDetail = () => {
 
     return (
         <div>
+            <Link to="/"><Button label="< Retour" /></Link>
             <div>
                 <h2>Product Detail</h2>
                 {isLoading ? ( 

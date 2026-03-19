@@ -34,8 +34,8 @@ const Product = () => {
         <div className='cathalog'>
             {product.map((x) => {
               return (
-                <Link to={"/product-detail"}>
-                  <div className='product' key={x._id || x.id}>
+                <Link to={`/product-detail/${x._id}`} key={x._id || x.id}>
+                  <div className='product'>
                     <img src={x.images} alt="" />
                     <div className='titlePrice'>
                       <h3><b>{x.title}</b></h3>

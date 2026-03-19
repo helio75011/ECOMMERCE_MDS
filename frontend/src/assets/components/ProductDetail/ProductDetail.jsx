@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import "./ProductDetail.css";
 
 const ProductDetail = () => {
@@ -6,11 +7,12 @@ const ProductDetail = () => {
     const [detail, setDetail] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null);
+    const { id } = useParams();
 
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/products`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/products/${id}`);
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -24,26 +26,31 @@ const ProductDetail = () => {
             } catch (err) {
                 setError(err.message);
                 console.error('Erreur:', err);
+                setIsLoading(false)
             }
         };
 
-        fetchProduct();
-    }, []);
+        if (id) {
+            fetchProduct();
+        }
+    }, [id]);
 
     return (
         <div>
             <div>
                 <h2>Product Detail</h2>
-                {isLoading ? <h1>loading...</h1> : 
+                {isLoading ? ( 
+                    <h1>loading...</h1> 
+                ) : detail ? (
                     <div>
-                        {detail.map((detail) => {
-                            return (
-                                <div key={detail._id || detail.id}>
-                                    <h3>{detail.title}</h3>
-                                </div>
-                            )
-                        })}
+                        <h3>{detail.title}</h3>
+                        <p>{detail.description}</p>
+                        <p>Prix: {detail.price} €</p>
+                        <p>{detail.stock ? "en stock" : "Épuisé"}</p>
                     </div>
+                ) : (
+                    <p>produit introuvable</p>
+                )
                 }
             </div>
         </div>

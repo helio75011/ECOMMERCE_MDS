@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import './index.css';
 import App from './App.jsx';
+import ProductDetail from './assets/components/ProductDetail/ProductDetail.jsx';
 
 // PrimeReact
 import 'primereact/resources/themes/lara-light-blue/theme.css';
@@ -15,6 +16,7 @@ ReactDOM.createRoot(root).render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
+      <Route path="/product-detail" element={<ProductDetail />} />
     </Routes>
   </BrowserRouter>,
 )

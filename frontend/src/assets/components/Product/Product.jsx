@@ -1,7 +1,7 @@
-import React from 'react';
 import './Product.css';
 import { useState, useEffect } from 'react';
-import { Button } from 'primereact/button';        
+import { Button } from 'primereact/button';    
+import { Link } from 'react-router';    
 
 const Product = () => {
   const [product, setProduct] = useState([]);
@@ -34,20 +34,22 @@ const Product = () => {
         <div className='cathalog'>
             {product.map((x) => {
               return (
-                <div className='product' key={x._id || x.id}>
-                  <img src={x.images} alt="" />
-                  <div className='titlePrice'>
-                    <h3><b>{x.title}</b></h3>
-                    <p>{x.price} €</p>
+                <Link to={"/product-detail"}>
+                  <div className='product' key={x._id || x.id}>
+                    <img src={x.images} alt="" />
+                    <div className='titlePrice'>
+                      <h3><b>{x.title}</b></h3>
+                      <p>{x.price} €</p>
+                    </div>
+                    <div className='titleStock'>
+                      <h3>{x.category}</h3>
+                      <p>{x.stock ? "en stock" : "Épuisé"}</p>
+                    </div>
+                    <div className='buy'>
+                      <Button label="Ajouter" />
+                    </div>
                   </div>
-                  <div className='titleStock'>
-                    <h3>{x.category}</h3>
-                    <p>{x.stock ? "en stock" : "Épuisé"}</p>
-                  </div>
-                  <div className='buy'>
-                    <Button label="Ajouter" />
-                  </div>
-                </div>
+                </Link>
               )
             })
           }

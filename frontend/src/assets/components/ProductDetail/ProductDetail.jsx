@@ -38,7 +38,7 @@ const ProductDetail = () => {
 
     return (
         <div>
-            <Link to="/"><Button label="< Retour" /></Link>
+            <Link to="/"><Button label="< Retour" className="return" /></Link>
             <div>
                 {isLoading ? ( 
                     <h1>loading...</h1> 

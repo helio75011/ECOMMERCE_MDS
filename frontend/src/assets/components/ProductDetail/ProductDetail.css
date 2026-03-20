@@ -1,5 +1,10 @@
+.return {
+    margin: 15px;
+}
+
 .productDetail-main {
     display: flex;
+    justify-content: center;
 }
 
 .productDetail-img {
@@ -7,8 +12,13 @@
     height: auto;
 }
 
+.productDetail-img img {
+    padding: 0px 10px 0px 0px;
+}
+
 .productDetail-desc {
     margin: 75px 0px 0px;
+    padding: 0px 0px 0px 10px;
 }
 
 .productDetail-desc h3 {

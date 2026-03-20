@@ -40,15 +40,19 @@ const ProductDetail = () => {
         <div>
             <Link to="/"><Button label="< Retour" /></Link>
             <div>
-                <h2>Product Detail</h2>
                 {isLoading ? ( 
                     <h1>loading...</h1> 
                 ) : detail ? (
-                    <div>
-                        <h3>{detail.title}</h3>
-                        <p>{detail.description}</p>
-                        <p>Prix: {detail.price} €</p>
-                        <p>{detail.stock ? "en stock" : "Épuisé"}</p>
+                    <div className="productDetail-main">
+                        <div className="productDetail-img">
+                            <img src={detail.images} alt={detail.title} />
+                        </div>
+                        <div className="productDetail-desc">
+                            <h3><b>{detail.title}</b></h3>
+                            <p>{detail.description}</p>
+                            <p>Prix: {detail.price} €</p>
+                            <p>{detail.stock ? "en stock" : "Épuisé"}</p>
+                        </div>
                     </div>
                 ) : (
                     <p>produit introuvable</p>

@@ -33,23 +33,23 @@ const Product = () => {
       {isLoading ? <h1>loading...</h1> : 
         <div className='cathalog'>
             {product.map((x) => {
-              return (
-                <Link to={`/product-detail/${x._id}`} key={x._id || x.id}>
-                  <div className='product'>
-                    <img src={x.images} alt="" />
-                    <div className='titlePrice'>
-                      <h3><b>{x.title}</b></h3>
-                      <p>{x.price} €</p>
-                    </div>
-                    <div className='titleStock'>
-                      <h3>{x.category}</h3>
-                      <p>{x.stock ? "en stock" : "Épuisé"}</p>
-                    </div>
-                    <div className='buy'>
-                      <Button label="Ajouter" />
-                    </div>
+              return (         
+                <div className='product'>
+                  <Link to={`/product-detail/${x._id}`} key={x._id || x.id}>
+                  <img src={x.images} alt="" />
+                  <div className='titlePrice'>
+                    <h3><b>{x.title}</b></h3>
+                    <p>{x.price} €</p>
                   </div>
-                </Link>
+                  <div className='titleStock'>
+                    <h3>{x.category}</h3>
+                    <p>{x.stock ? "en stock" : "Épuisé"}</p>
+                  </div>
+                  </Link>
+                  <div className='buy'>
+                    <Button label="Ajouter" />
+                  </div>
+                </div>                
               )
             })
           }

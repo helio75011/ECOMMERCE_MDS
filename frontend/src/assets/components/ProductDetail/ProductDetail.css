@@ -1,0 +1,16 @@
+.productDetail-main {
+    display: flex;
+}
+
+.productDetail-img {
+    width: 400px;
+    height: auto;
+}
+
+.productDetail-desc {
+    margin: 75px 0px 0px;
+}
+
+.productDetail-desc h3 {
+    font-size: 24px;
+}

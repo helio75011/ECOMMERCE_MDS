@@ -1,4 +1,4 @@
-Je lui## 🛍️ API E-Commerce — Node.js / Express / MongoDB
+## 🛍️ API E-Commerce — Node.js / Express / MongoDB
 
 ## 🚀 Description
 Cette API e-commerce permet de gérer :

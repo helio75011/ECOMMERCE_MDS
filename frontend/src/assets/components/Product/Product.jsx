@@ -11,7 +11,8 @@ const Product = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/products`);
+        // const response = await fetch(`${import.meta.env.VITE_API_URL}/products`);
+        const response = await fetch(`${import.meta.env.VITE_TEST_API}/products`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -34,8 +35,8 @@ const Product = () => {
         <div className='cathalog'>
             {product.map((x) => {
               return (         
-                <div className='product'>
-                  <Link to={`/product-detail/${x._id}`} key={x._id || x.id}>
+                <div className='product' key={x._id || x.id}>
+                  <Link to={`/product-detail/${x._id}`}>
                   <img src={x.images} alt="" />
                   <div className='titlePrice'>
                     <h3><b>{x.title}</b></h3>
